@@ -13,15 +13,17 @@ def convert_files_encoding(src_parent_path, target_parent_path,
             fout.write(line)
 
 if __name__ == '__main__':
-    src_parent_path = "/Users/piguanghua/Downloads/train_dataset/nCoV_900k_train.unlabled.csv"
-    target_parent_path = "/Users/piguanghua/Downloads/train_dataset/nCoV_900k_train.unlabled1.labled.csv"
+    src_parent_path = "/Users/piguanghua/Downloads/nCoV_900k_train.unlabled.csv"
+    target_parent_path = "/Users/piguanghua/Downloads/nCoV_100k_train1.labled.csv"
     #convert_files_encoding(src_parent_path, target_parent_path)
 
 
     df = pd.read_csv(target_parent_path, encoding='utf-8')
-    print(df.head(5))
-    '''
-    df = df[["微博id"],["微博中文内容"]]
+
+
+
+
+    df = df[["微博id","微博中文内容"]]
     train_sentences = []
     train_labels = []
     df["情感倾向"] = np.zeros_like(df[["微博中文内容"]])
@@ -36,4 +38,5 @@ if __name__ == '__main__':
         label = int(label)
         train_labels.append(label)
         train_sentences.append(text)
-    '''
+    print(len(train_labels))
+
