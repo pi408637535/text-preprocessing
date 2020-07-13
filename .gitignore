@@ -11,3 +11,7 @@ buildNumber.properties
 .idea/
 *.iml
 /bin/
+.entity_recognize/*.dev
+.entity_recognize/*.test
+.entity_recognize/*.train
+
