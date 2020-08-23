@@ -6,17 +6,34 @@
 
 import pandas as pd
 import text_utils
-
+from text_utils import clean_sentence
 
 
 if __name__ == '__main__':
-    path = "/Users/piguanghua/Downloads/train.csv"
-    df = pd.read_csv(path)
-    train_labels = df['label'].tolist()
-    train_sentences = df['review'].tolist()
-    save_path = "/Users/piguanghua/Downloads/train.txt"
-    with open(save_path, 'w', encoding='utf-8') as fout:
-        for idx, word in enumerate(train_sentences):
-            fout.write('{1}\t{0}\n'.format(train_labels[idx], word))
 
+    target_path = "/Users/piguanghua/Downloads/chat_source.txt"
+    source_file = "/Users/piguanghua/Downloads/material_new1.text"
 
+    with open(target_path) as fin, open(source_file, "w") as fout:
+        for ele in fin:
+            try:
+                sentence = clean_sentence(ele)
+            except TypeError as e:
+                continue
+
+            sentence = clean_sentence(ele)
+
+            if len(sentence) < 2:
+                continue
+
+            if len(sentence[0]) > 35 or len(sentence[1]) > 35:
+                continue
+
+            if len(sentence[0].strip()) <= 1 or len(sentence[1].strip()) <= 1:
+                continue
+
+            # fout.write(sentence)
+            sentence = list(sentence)
+            sentence[1] = sentence[1] + "\n"
+            sentence = "\t".join(sentence)
+            fout.write(sentence)
